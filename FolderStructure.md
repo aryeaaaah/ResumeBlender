@@ -1,3 +1,5 @@
+# Project Structure
+```
 resume-tailor/
 │
 ├── backend/
@@ -34,3 +36,4 @@ resume-tailor/
 ├── uploads/                     ← Uploaded PDFs land here (auto-created)
 ├── outputs/                     ← Generated .docx files land here (auto-created)
 └── edge_profile_2/              ← Your existing Edge profile folder, move here
+```
