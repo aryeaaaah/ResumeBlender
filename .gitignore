@@ -31,3 +31,7 @@ Thumbs.db
 .vscode/
 .idea/
 *.swp
+
+# Browser driver info
+backend/edge_profile/*
+!backend/edge_profile/.gitkeep
