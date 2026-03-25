@@ -72,25 +72,25 @@ def confirm_login_endpoint():
 async def analyse(
     job_description: str  = Form(...),
     resume_file:     UploadFile = File(...),
-    guidelines_file: UploadFile = File(...),
+   # guidelines_file: UploadFile = File(...),
 ):
     # Save uploaded files
     resume_path     = UPLOADS / "resume.pdf"
-    guidelines_path = UPLOADS / "guidelines.md"
+  #  guidelines_path = UPLOADS / "guidelines.md"
 
     with open(resume_path, "wb") as f:
         f.write(await resume_file.read())
-    with open(guidelines_path, "wb") as f:
-        f.write(await guidelines_file.read())
+  #  with open(guidelines_path, "wb") as f:
+     #   f.write(await guidelines_file.read())
 
     # Extract text
     resume_text = extract_text_from_pdf(str(resume_path))
-    guidelines  = guidelines_path.read_text(encoding="utf-8")
+  #  guidelines  = guidelines_path.read_text(encoding="utf-8")
 
     # Store in session
     session["job_description"] = job_description
     session["resume_text"]     = resume_text
-    session["guidelines"]      = guidelines
+   # session["guidelines"]      = guidelines
     session["tailored_data"]   = None
 
     # Score original resume via selenium
@@ -113,7 +113,7 @@ def tailor():
         tailored_data = run_tailor(
             session["resume_text"],
             session["job_description"],
-            session["guidelines"]
+          #  session["guidelines"] # Not used in current prompt, but left here for easy future updates
         )
     except Exception as e:
         return {"error": f"Tailoring failed: {str(e)}"}

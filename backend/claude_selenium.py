@@ -213,13 +213,13 @@ def run_score(resume_text: str, job_description: str) -> dict:
     return parse_json(raw)
 
 
-def run_tailor(resume_text: str, job_description: str, guidelines: str) -> dict:
+def run_tailor(resume_text: str, job_description: str) -> dict:
     prompt = load_prompt("ResumeTailor.pmt", {
         "[TEMPLATE_RESUME_CONTENT]":      resume_text,
         "[TEMPLATE_JOB_DESCRIPTION_CONTENT]": job_description,
-        "[TEMPLATE_GUIDELINES_CONTENT]":  guidelines,
+      #  "[TEMPLATE_GUIDELINES_CONTENT]":  guidelines,  # Not used in current prompt, but left here for easy future updates
     })
-    start_new_chat()
+    # start_new_chat()
     send_prompt(prompt)
     wait_for_response()
     raw = extract_response()

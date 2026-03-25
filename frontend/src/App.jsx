@@ -32,7 +32,7 @@ export default function App() {
   // Inputs
   const [jd,             setJd]             = useState('')
   const [resumeFile,     setResumeFile]     = useState(null)
-  const [guideFile,      setGuideFile]      = useState(null)
+//  const [guideFile,      setGuideFile]      = useState(null)
 
   // Results
   const [originalScore,  setOriginalScore]  = useState(null)
@@ -46,7 +46,8 @@ export default function App() {
   const [tailorDone,     setTailorDone]     = useState(false)
 
   // ── Derived booleans ────────────────────────────────────────────────────────
-  const canAnalyse = loggedIn && jd.trim() && resumeFile && guideFile && !status
+  //const canAnalyse = loggedIn && jd.trim() && resumeFile && guideFile && !status
+  const canAnalyse = loggedIn && jd.trim() && resumeFile && !status
   const canTailor  = originalScore && !status
   const canCover   = tailorDone && !status
 
@@ -93,7 +94,7 @@ export default function App() {
     const form = new FormData()
     form.append('job_description',  jd)
     form.append('resume_file',      resumeFile)
-    form.append('guidelines_file',  guideFile)
+    //form.append('guidelines_file',  guideFile)
 
     try {
       const res  = await fetch('/analyse', { method: 'POST', body: form })
@@ -243,7 +244,7 @@ export default function App() {
           }}
         />
 
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginBottom: 20 }}>
+        {/* <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 12, marginBottom: 20 }}>
           <FileUploader
             label="Resume (.pdf)"
             accept=".pdf"
@@ -258,7 +259,17 @@ export default function App() {
             onFile={setGuideFile}
             icon="📋"
           />
-        </div>
+        </div> */}
+        
+        <div style={{ marginBottom: 20 }}>
+          <FileUploader
+            label="Resume (.pdf)"
+            accept=".pdf"
+            file={resumeFile}
+            onFile={setResumeFile}
+            icon="📄"
+          />
+        </div> 
 
         <button
           onClick={handleAnalyse}
