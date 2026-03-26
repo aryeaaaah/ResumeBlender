@@ -230,12 +230,13 @@ def load_prompt(filename: str, replacements: dict) -> str:
 
 
 # ── High-level task functions (called by main.py) ─────────────────────────────
-def run_score(resume_text: str, job_description: str) -> dict:
+def run_score(resume_text: str, job_description: str, first_time:bool=False) -> dict:
     prompt = load_prompt("ResumeScoring.pmt", {
         "[TEMPLATE_RESUME_CONTENT]":      resume_text,
         "[TEMPLATE_JOB_DESCRIPTION_CONTENT]": job_description,
     })
-    start_new_chat()
+    if(first_time):
+        start_new_chat()
     send_prompt(prompt)
     wait_for_response()
     raw = extract_response()

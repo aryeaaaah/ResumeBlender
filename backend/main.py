@@ -10,7 +10,7 @@ from fastapi.responses import FileResponse
 
 load_dotenv()
 
-from resume_parser import extract_text_from_pdf
+from resume_parser import (extract_text_from_pdf,extract_text_from_docx)
 from claude_selenium import (
     open_and_login, confirm_login,
     run_score, run_tailor, run_cover_letter,
@@ -95,7 +95,7 @@ async def analyse(
 
     # Score original resume via selenium
     try:
-        original_score = run_score(resume_text, job_description)
+        original_score = run_score(resume_text, job_description, True)
     except Exception as e:
         return {"error": f"Scoring failed: {str(e)}"}
 
@@ -137,8 +137,9 @@ def tailor():
 
     # Score tailored resume
     try:
-        tailored_text  = _resume_json_to_text(tailored_data)
-        tailored_score = run_score(tailored_text, session["job_description"])
+        # tailored_text  = _resume_json_to_text(tailored_data) # OLD CODE
+        tailored_text = extract_text_from_docx(str(out_path)) # NEW CODE (UNTESTED)
+        tailored_score = run_score(tailored_text, session["job_description"], False)
     except Exception as e:
         return {"error": f"Tailored scoring failed: {str(e)}"}
 
