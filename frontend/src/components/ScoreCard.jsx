@@ -75,7 +75,7 @@ export default function ScoreCard({ original, tailored }) {
   return (
     <div style={{
       background: 'var(--surface)', border: '1px solid var(--border)',
-      borderRadius: 16, padding: '28px 32px', marginTop: 32,
+      borderRadius: 16, padding: '28px 32px', marginTop: 0,
     }}>
 
       {/* Header */}
