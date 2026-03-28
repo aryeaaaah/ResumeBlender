@@ -36,11 +36,11 @@ function OutputFile({ label, filename, downloadUrl, icon }) {
 }
 
 export default function OutputPanel({ resumeFile, coverFile }) {
-  if (!resumeFile && !coverFile) return null
+  // if (!resumeFile && !coverFile) return null
   return (
     <div style={{
       background: 'var(--surface)', border: '1px solid var(--border)',
-      borderRadius: 16, padding: '24px 28px', marginTop: 24,
+      borderRadius: 16, padding: '24px 28px', marginTop: 0,
     }}>
       <div style={{
         fontFamily: 'var(--font-head)', fontSize: 13, fontWeight: 700,

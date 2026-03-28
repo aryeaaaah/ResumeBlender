@@ -1,18 +1,36 @@
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
+/* ── Dark theme (default) — Deep Purple ── */
 :root {
-  --bg:         #0d0f14;
-  --surface:    #13161d;
-  --surface2:   #1a1e28;
-  --border:     #252a38;
-  --accent:     #4f8ef7;
-  --accent2:    #7c6af7;
-  --green:      #3ecf8e;
-  --red:        #f76e6e;
-  --yellow:     #f7c948;
-  --text:       #e8ecf5;
-  --muted:      #6b7694;
+  --bg:         #0d0a14;
+  --surface:    #13101e;
+  --surface2:   #1c1828;
+  --border:     #2d2840;
+  --accent:     #a855f7;
+  --accent2:    #ec4899;
+  --green:      #34d399;
+  --red:        #f87171;
+  --yellow:     #fbbf24;
+  --text:       #ede9f6;
+  --muted:      #6d6285;
   --font-head:  'Syne', sans-serif;
+  --font-mono:  'DM Mono', monospace;
+}
+
+/* ── Light theme — Charcoal & Amber ── */
+[data-theme="light"] {
+  --bg:         #F8F4F0;
+  --surface:    #FFFFFF;
+  --surface2:   #EEE7DF;
+  --border:     #DDD3C7;
+  --accent:     #4E2750;
+  --accent2:    #9C6B40;
+  --green:      #3A6040;
+  --red:        #8C2A35;
+  --yellow:     #B8860B;
+  --text:       #1A1218;
+  --muted:      #9080888;
+  --font-head:  'EB Garamond', serif;
   --font-mono:  'DM Mono', monospace;
 }
 
@@ -21,6 +39,7 @@ body {
   color:       var(--text);
   font-family: var(--font-mono);
   min-height:  100vh;
+  transition:  background 0.3s, color 0.3s;
 }
 
 ::-webkit-scrollbar { width: 6px; }
@@ -28,5 +47,4 @@ body {
 ::-webkit-scrollbar-thumb { background: var(--border); border-radius: 3px; }
 
 button:disabled { opacity: 0.35; cursor: not-allowed; }
-
-textarea:focus { outline: none; border-color: var(--accent) !important; }
+textarea:focus  { outline: none; border-color: var(--accent) !important; }
