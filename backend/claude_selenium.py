@@ -122,7 +122,7 @@ def wait_for_response(timeout=180):
 
     try:
         WebDriverWait(driver, 15).until(
-            EC.presence_of_element_located((By.CSS_SELECTOR, 'button[aria-label="Stop"]'))
+            EC.presence_of_element_located((By.CSS_SELECTOR, 'button[aria-label="Stop response"]'))
         )
         print(">>> Claude is generating...")
     except:
@@ -130,7 +130,7 @@ def wait_for_response(timeout=180):
 
     try:
         WebDriverWait(driver, timeout).until(
-            EC.invisibility_of_element_located((By.CSS_SELECTOR, 'button[aria-label="Stop"]'))
+            EC.invisibility_of_element_located((By.CSS_SELECTOR, 'button[aria-label="Stop response"]'))
         )
         print(">>> Claude finished responding")
     except:
