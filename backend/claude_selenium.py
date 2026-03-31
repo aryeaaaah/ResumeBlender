@@ -30,7 +30,8 @@ def get_driver():
             _driver = None
 
     options = Options()
-    options.add_argument("--start-maximized")
+    # options.add_argument("--start-maximized")
+    options.add_argument("--start-minimized")
     options.add_argument("--disable-blink-features=AutomationControlled")
     options.add_argument(f"--user-data-dir={PROFILE_PATH}")
     options.add_experimental_option("excludeSwitches", ["enable-automation"])
@@ -165,30 +166,6 @@ def extract_response() -> str:
 
 
 # ── Parse JSON from response ──────────────────────────────────────────────────
-# def parse_json(raw: str) -> dict:
-#     # Direct parse
-#     try:
-#         return json.loads(raw)
-#     except:
-#         pass
-
-#     # Strip markdown fences
-#     cleaned = re.sub(r"```(?:json)?", "", raw).replace("```", "").strip()
-#     try:
-#         return json.loads(cleaned)
-#     except:
-#         pass
-
-#     # Find first { ... } block
-#     match = re.search(r'\{[\s\S]*\}', cleaned)
-#     if match:
-#         try:
-#             return json.loads(match.group())
-#         except:
-#             pass
-
-#     raise ValueError(f"Could not parse JSON from response:\n{raw[:500]}")
-
 def parse_json(raw: str) -> dict:
     # Strip all leading/trailing whitespace first
     raw = raw.strip()
